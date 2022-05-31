@@ -2,3 +2,5 @@
 ssl/
 .env
 .wwebjs_auth
+
+.idea
