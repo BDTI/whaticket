@@ -265,6 +265,17 @@ const UserModal = ({ open, onClose, userId }) => {
 										</FormControl>
 									)}
 								/>
+								<Field
+									as={TextField}
+									label={i18n.t("userModal.form.slack")}
+									autoFocus
+									name="slackToken"
+									error={touched.slackToken && Boolean(errors.slackToken)}
+									helperText={touched.slackToken && errors.slackToken}
+									variant="outlined"
+									margin="dense"
+									fullWidth
+								/>
 							</DialogContent>
 							<DialogActions>
 								<Button

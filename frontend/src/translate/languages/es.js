@@ -210,6 +210,7 @@ const messages = {
           password: "Contraseña",
           profile: "Perfil",
           whatsapp: "Conexión estándar",
+          slack: "Token Slack"
         },
         buttons: {
           okAdd: "Agregar",

@@ -44,6 +44,9 @@ class User extends Model<User> {
   @Column
   tokenVersion: number;
 
+  @Column
+  slackToken: string;
+
   @Default("admin")
   @Column
   profile: string;

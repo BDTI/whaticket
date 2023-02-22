@@ -20,6 +20,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { i18n } from "../../translate/i18n";
 import api from "../../services/api";
+import { webhookVersotech } from "../../services/api";
 import ButtonWithSpinner from "../ButtonWithSpinner";
 import toastError from "../../errors/toastError";
 import useQueues from "../../hooks/useQueues";
@@ -118,7 +119,13 @@ const TransferTicketModal = ({ modalOpen, onClose, ticketid, ticketWhatsappId })
 				data.whatsappId = selectedWhatsapp;
 			}
 
+
 			await api.put(`/tickets/${ticketid}`, data);
+
+			const ticket = await api.get(`/tickets/${ticketid}`);
+			await webhookVersotech.post(`/transferir-whats`, {
+				ticket, selectedUser, loggedInUser
+			});
 
 			setLoading(false);
 			history.push(`/tickets`);
@@ -127,7 +134,6 @@ const TransferTicketModal = ({ modalOpen, onClose, ticketid, ticketWhatsappId })
 			toastError(err);
 		}
 	};
-
 	return (
 		<Dialog open={modalOpen} onClose={handleClose} maxWidth="lg" scroll="paper">
 			<form onSubmit={handleSaveTicket}>

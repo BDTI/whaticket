@@ -6,4 +6,8 @@ const api = axios.create({
 	withCredentials: true,
 });
 
+export const webhookVersotech = axios.create({
+	baseURL: "http://localhost:6060",
+}); 
+
 export default api;

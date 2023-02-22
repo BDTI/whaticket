@@ -11,6 +11,7 @@ interface Request {
   queueIds?: number[];
   profile?: string;
   whatsappId?: number;
+  slackToken: string;
 }
 
 interface Response {
@@ -18,6 +19,7 @@ interface Response {
   name: string;
   id: number;
   profile: string;
+  slackToken: string;
 }
 
 const CreateUserService = async ({
@@ -26,7 +28,8 @@ const CreateUserService = async ({
   name,
   queueIds = [],
   profile = "admin",
-  whatsappId
+  whatsappId,
+  slackToken
 }: Request): Promise<Response> => {
   const schema = Yup.object().shape({
     name: Yup.string().required().min(2),
@@ -59,7 +62,8 @@ const CreateUserService = async ({
       password,
       name,
       profile,
-      whatsappId: whatsappId ? whatsappId : null
+      whatsappId: whatsappId ? whatsappId : null,
+      slackToken
     },
     { include: ["queues", "whatsapp"] }
   );
